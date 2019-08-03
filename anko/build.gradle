@@ -1,0 +1,106 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+
+    signingConfigs {
+        release {
+            storeFile file("toroke.qiguanbang.jks")
+            storePassword "toroke.com"
+            keyAlias "企管邦"
+            keyPassword "toroke.qiguanbang"
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.example.anko"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        flavorDimensions "default"
+
+        manifestPlaceholders = [
+                OPEN_INSTALL_APPKEY: rootProject.ext.config["open_install_appkey"],
+        ]
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+//            applicationIdSuffix ".debug"
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        dev {
+            minifyEnabled false
+            applicationIdSuffix ".dev"
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 这里是为了不同过的版本设置一些特殊的参数，并不直接和 buildType 关联
+    // 例如：使用 buildType 中的 dev 版本，也可以使用 flavors_release 里面设置的自定义参数。这需要自己按照需求制定。
+    productFlavors {
+        //自定义名字不过不能和上面buildType中相同，不然Gradle编译会不通过。在这里使用了『flavors_』前缀以便区分。
+        productA {
+            applicationIdSuffix ".a"
+            versionName "1.0.0"
+            // manifestPlaceholders中写到的『str』，『package_name』不支持用大写，否则Gradle编译会不通过。
+            // 这里所设置的变量可以直接使用在『AndroidManifest.xml』中，使用方式为：${package_name}
+            // android:label="${package_name}"
+            manifestPlaceholders = [str: "productA", package_name: "${applicationId}"]
+
+            // 这里的参数是为了在 java 代码中使用，具体的使用方式为：context.getResources().getString(R.string.strKey);
+            resValue("string", "strKey", "productAValue")
+            resValue("string", "app_name", "A 产品")
+        }
+
+        productB {
+            applicationIdSuffix ".b"
+            versionName "1.0.0"
+            manifestPlaceholders = [str: "productB", package_name: "${applicationId}.dev"]
+            resValue("string", "strKey", "productBValue")
+            resValue("string", "app_name", "B 产品")
+        }
+
+        productC {
+            applicationIdSuffix ".c"
+            versionName "1.0.0"
+            manifestPlaceholders = [str: "productC", package_name: "${applicationId}.dev"]
+            resValue("string", "strKey", "productCValue")
+            resValue("string", "app_name", "C 产品")
+        }
+
+        productFlavors.all {
+            flavor -> flavor.manifestPlaceholders.put("UMENG_CHANNEL_VALUE", name)
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    // anko
+    implementation "org.jetbrains.anko:anko:$anko_version"
+    // OpenInstall 高效推广
+    implementation files('libs/OpenInstall_v2.2.2.jar')
+}

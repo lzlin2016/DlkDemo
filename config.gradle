@@ -1,0 +1,5 @@
+ext {
+    config = [
+            open_install_appkey               : "y1rcbz",
+     ]
+}

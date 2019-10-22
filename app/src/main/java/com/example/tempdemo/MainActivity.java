@@ -1,6 +1,7 @@
 package com.example.tempdemo;
 
 import android.content.ComponentName;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +13,9 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.example.tempdemo.recycler.RecyclerViewActivity;
+import com.example.tempdemo.restart.RestartAPPTool;
 
 public class MainActivity extends AppCompatActivity {
     private ComponentName defaultComponent;
@@ -63,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("lzzz", "MainActivity类 -> onDestroy -> 不需要或者已改变图标");
                 break;
         }
+//        RestartAPPTool.restartAPP(this);
     }
 
     @Override
@@ -161,5 +166,9 @@ public class MainActivity extends AppCompatActivity {
 //        setting.setBlockNetworkImage(false);
         web.loadUrl("https://static.banjoy.cn/html/3_0/studyPlanDetail.html?planId=11&stateType=0");
 //        web.loadUrl("https://static.banjoy.cn/html/plan/20190109/11_9510.html");
+    }
+
+    public void recyclerDemo(View view) {
+        RecyclerViewActivity.luanch(this);
     }
 }

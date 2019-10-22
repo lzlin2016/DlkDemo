@@ -8,4 +8,25 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="OnePixelActivity" parent="android:Theme.Holo.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <declare-styleable name="titleBar">
+        <attr name="title" format="string" />
+        <attr name="titleTextSize" format="dimension" />
+        <attr name="titleTextColor" format="color" />
+        <attr name="titleLeftText" format="string" />
+        <attr name="titleLeftBackground" format="color|reference" />
+        <attr name="titleLeftTextColor" format="color" />
+        <attr name="titleRightText" format="string" />
+        <attr name="titleRightBackground" format="color|reference" />
+        <attr name="titleRightTextColor" format="color" />
+        <attr name="itemHeight" format="dimension|reference"/>
+        <attr name="titleGravity" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="center" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+    </declare-styleable>
 </resources>

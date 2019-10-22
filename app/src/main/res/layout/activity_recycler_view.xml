@@ -13,9 +13,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="标题"
-        app:titleLeftText="左边标题"
-        app:titleRightText="右边标题"
+        app:title="TITLE"
+        app:titleTextSize="20sp"
+        app:titleGravity="center"
+        app:titleLeftText="返回"
+        app:titleRightText="MENU"
         app:titleTextColor="#333333"  />
 
     <Button

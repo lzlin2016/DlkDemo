@@ -5,7 +5,9 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -58,7 +60,7 @@ public class Titlebar extends RelativeLayout {
 
     public Titlebar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        LayoutInflater.from(context).inflate(R.layout.layout_titlebar, this, true);
+        LayoutInflater.from(context).inflate(R.layout.layout_titlebar, this);
 
         this.context = context;
 
@@ -70,7 +72,7 @@ public class Titlebar extends RelativeLayout {
         TypedArray ta = this.getContext().obtainStyledAttributes(attrs, R.styleable.titleBar);
         if (ta != null) {
             title = ta.getString(R.styleable.titleBar_title);
-            titleTextSize = ta.getDimensionPixelSize(R.styleable.titleBar_titleTextSize, 16);
+            titleTextSize = ta.getDimension(R.styleable.titleBar_titleTextSize, 16);
             titleTextColor = ta.getColor(R.styleable.titleBar_titleTextColor, getResources().getColor(R.color.black33));
             titleLeftText = ta.getString(R.styleable.titleBar_titleLeftText);
             titleLeftBackground = ta.getDrawable(R.styleable.titleBar_titleLeftBackground);
@@ -102,9 +104,10 @@ public class Titlebar extends RelativeLayout {
         tvRight.setBackgroundDrawable(titleRightBackground);
 
         tvTitle.setText(title);
-        tvTitle.setTextSize(titleTextSize);
+        tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
         tvTitle.setTextColor(titleTextColor);
         tvTitle.setBackgroundDrawable(titleRightBackground);
+        tvTitle.setGravity(titleGravity);
 
         Log.e("Titlebar", "initView 执行啦");
 

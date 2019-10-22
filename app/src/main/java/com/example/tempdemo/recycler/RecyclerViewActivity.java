@@ -44,19 +44,19 @@ public class RecyclerViewActivity extends AppCompatActivity {
         titlebar.setLeftClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(RecyclerViewActivity.this, "点击了左边标题", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
         titlebar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(RecyclerViewActivity.this, "点击了右边标题", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecyclerViewActivity.this, "点击了 MENU", Toast.LENGTH_SHORT).show();
             }
         });
         titlebar.setTitleClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(RecyclerViewActivity.this, "点击了标题", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecyclerViewActivity.this, "点击了 标题", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -1,7 +1,6 @@
 package com.example.tempdemo;
 
 import android.content.ComponentName;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,8 +13,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.example.tempdemo.ipc.MessengerActivity;
 import com.example.tempdemo.recycler.RecyclerViewActivity;
-import com.example.tempdemo.restart.RestartAPPTool;
 
 public class MainActivity extends AppCompatActivity {
     private ComponentName defaultComponent;
@@ -170,5 +169,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void recyclerDemo(View view) {
         RecyclerViewActivity.luanch(this);
+    }
+
+    public void ipc(View view) {
+        MessengerActivity.luanch(this);
     }
 }

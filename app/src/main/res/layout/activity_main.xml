@@ -18,12 +18,17 @@
         android:layout_height="wrap_content"
         android:text="双十一" />
 
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="recyclerDemo"
         android:text="测试 RecyclerView 动画" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ipc"
+        android:text="多进程间的通信IPC" />
 
     <WebView
         android:id="@+id/web"
